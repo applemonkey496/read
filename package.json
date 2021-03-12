@@ -15,6 +15,7 @@
         "url": "https://github.com/applemonkey496/read"
     },
     "license": "ISC",
+    "types": "index.d.ts",
     "files": [
         "read.js"
     ]
