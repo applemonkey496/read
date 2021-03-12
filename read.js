@@ -125,14 +125,24 @@ function readCallback(opts, cb) {
 }
 
 function read(opts, cb) {
-    if (cb) {
+    if (typeof cb == 'function') {
         return readCallback(opts, cb)
     } else {
         return new Promise((resolve, reject) => {
             try {
                 readCallback(opts, (err, value, isDefault) => {
                     if (err instanceof Error) reject(err)
-                    resolve(value, isDefault)
+
+                    // Strict equals is important here since 
+                    // undefined here should default to true.
+                    // Only if the option is explicitly set 
+                    // as false should the Promise not resolve
+                    // with isDefault.
+                    if (opts.returnIsDefault === false) {
+                        resolve(value)
+                    } else {
+                        resolve(value, isDefault)
+                    }
                 })
             } catch (e) {
                 reject(e)

@@ -3,6 +3,7 @@ import type { Interface } from 'readline'
 
 declare function Read(options: Read.Options, callback: Read.Callback): void
 declare function Read(options: Read.Options): Promise<[string, boolean]>
+declare function Read(options: Read.Options): Promise<string>
 
 declare namespace Read {
     type Callback = (error: any, value: string, isDefault: boolean) => void
@@ -40,6 +41,15 @@ declare namespace Read {
          * }
          */
         replace?: string,
+
+        /**
+         * Whether to pass the `isDefault` parameter to
+         * the Promise. This option is only necessary if
+         * using Promises, since in the callback, you can
+         * just ignore the third argument. This defaults 
+         * to `true`.
+         */
+        returnIsDefault?: boolean,
 
         /**
          * The function to run when a SIGINT (Ctrl-C
