@@ -57,7 +57,7 @@ declare namespace Read {
          *     process.exit(1);
          * }
          */
-        sigintHandler: (rl: Interface) => void,
+        sigintHandler?: (rl: Interface) => void,
 
         /** Whether to suppress input. */
         silent?: boolean,
