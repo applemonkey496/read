@@ -2,8 +2,7 @@
 import type { Interface } from 'readline'
 
 declare function Read(options: Read.Options, callback: Read.Callback): void
-declare function Read(options: Read.Options): Promise<void>
-declare function Read<T>(options: Read.Options): Promise<T>
+declare function Read(options: Read.Options): Promise<[string, boolean]>
 
 declare namespace Read {
     type Callback = (error: any, value: string, isDefault: boolean) => void
